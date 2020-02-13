@@ -6,7 +6,7 @@ import java.util.*;
 public class Dijkstra {
 	
 	
-	static int graph[][] = new int[20000][20000];
+	static int graph[][] = new int[2000][2000];
 	static int V = 200;
 	
 	// Creat shortest path set, this set tracks the vertices contained in the shortest path tree, 
