@@ -1,7 +1,6 @@
 # AI-Project1 Shortest Path
 
-
-#Overview
+# Overview
 
 This is an AI program written in JAVA.
 
