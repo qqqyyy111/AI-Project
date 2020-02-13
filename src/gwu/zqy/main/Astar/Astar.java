@@ -13,15 +13,15 @@ import java.util.Scanner;
 import java.util.Set;
 
 // f(n) = g(n) + h(n)
-// H(n) = max { abs(current_cell.x ¨C goal.x), abs(current_cell.y ¨C goal.y) } 
+// H(n) = max { abs(current_cell.x Â¨C goal.x), abs(current_cell.y Â¨C goal.y) } 
 
 
 public class Astar {
  
 	  public static int INF = Integer.MAX_VALUE;
 	  public static int squareSize = 10;
-	  public static int[][] vertices = new int[20000][10];
-	  public static int[][] edges = new int[20000][20000];
+	  public static int[][] vertices = new int[2000][10];
+	  public static int[][] edges = new int[2000][2000];
 	  
 	public static int aStar(int source, int target, int[][] vertices, int[][] edges) {
 	    /*
