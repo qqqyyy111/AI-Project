@@ -108,18 +108,18 @@ public class Dijkstra {
 		readFile();
 		
 		Scanner scan = new Scanner(System.in);
-        System.out.println("Please input the source vertex: ");
-        int srcV = scan.nextInt();
-        System.out.println("Please input the source vertex: ");
-        int tarV = scan.nextInt();
-        
-        
-        Dijkstra d = new Dijkstra();
-        d.dijkstra(graph, srcV, tarV);
-      
-        /*System.out.println("The shortest distacne is: " + 
-                dist[src][tar]);
-       */
-        scan.close();
+		System.out.println("Please input the source vertex: ");
+		int srcV = scan.nextInt();
+		System.out.println("Please input the source vertex: ");
+		int tarV = scan.nextInt();
+
+
+		Dijkstra d = new Dijkstra();
+		d.dijkstra(graph, srcV, tarV);
+
+		/*System.out.println("The shortest distacne is: " + 
+			dist[src][tar]);
+	       */
+		scan.close();
 	}	
 }
