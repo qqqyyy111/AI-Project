@@ -54,17 +54,18 @@ public class Astar {
 		       result = ver.g;
 		       parent = ver.parents;
 	}
-		   return result;
+		   System.out.println("The Shortest Path is: " + parent);
+		   return result;	   
 }
 
 	
   	public static void readFile1() throws IOException, FileNotFoundException {
   
-	   	    File file1 = new File("graphs/graph200_0.1/v.txt");
-	  	    FileInputStream inputStream1 = new FileInputStream(file1);
-		    BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(inputStream1));
+	  			File file1 = new File("graphs/graph200_0.2/v.txt");
+	  			FileInputStream inputStream1 = new FileInputStream(file1);
+		        BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(inputStream1));
 		  	    	  	
-		    FileReader fileReader = new FileReader(file1); 	          
+		        FileReader fileReader = new FileReader(file1); 	          
   	            LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
   	            lineNumberReader.skip(Long.MAX_VALUE);
   	            long lines = lineNumberReader.getLineNumber() + 1;
@@ -100,7 +101,7 @@ public class Astar {
 	  		BufferedReader reader;
 			try {
 				String encoding = "UTF-8"; 
-				File file2 = new File("graphs/graph200_0.1/e.txt");
+				File file2 = new File("graphs/graph200_0.2/e.txt");
 				if (file2.isFile() && file2.exists()) {       	// if the file exists
 				InputStreamReader read = new InputStreamReader(new FileInputStream(file2), encoding);
 				
@@ -145,7 +146,8 @@ public class Astar {
 			   int target = in.nextInt();
 			   
 			   int result = aStar(source, target, vertices, edges);
-			   System.out.println("The Shortest Path is: " + result);
+			   System.out.println("The Shortest Distance is: " + result);
+			   
 			   
   }
 }
