@@ -37,7 +37,7 @@ public class Astar {
 			      }
 			   });
 	   
-			   //find the optimal point from 
+			   //find the optimal point
 			   Set<Integer> parent = new HashSet<Integer>();
 			   parent.add(source);
 			   Vertex ver = new Vertex(source, HDist(source, target, vertices)+0, 0, parent);
