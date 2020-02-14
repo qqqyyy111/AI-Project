@@ -8,7 +8,7 @@ public class Dijkstra {
 	
 	static int graph[][] = new int[2000][200];
 	static int V = 200;
-	
+	static final int NO_PARENT = -1;
 	// Creat shortest path set, this set tracks the vertices contained in the shortest path tree, 
 	// that is, its minimum distance from the source point has been calculated and determined. 
 	// Initially, this set is empty.
@@ -27,14 +27,23 @@ public class Dijkstra {
 			return min_index;
 	}
 	
-	public void printSolution(int dist[], int n, int m)
+	public void printSolution(int dist[], int n, int m, int[] parents)
 	{
 		/*for(int i=0; i<V; i++)
 			System.out.println(" The Distance to Vertex " + i + " is " + dist[i]); 
 		*/	
 		System.out.println("The Shortest Distance is: " + dist[m]);
+		System.out.print("The Shortest Path is: ");
+		printPath(m, parents);
 	}
 	
+	private static void printPath(int currentVertex, int[] parents){
+
+        if (currentVertex == -1) 
+            return;
+        printPath(parents[currentVertex], parents); 
+        System.out.print(currentVertex + " "); 
+    } 
 	
 	public void dijkstra(int graph[][], int src, int tar){
 				int dist[] = new int[V];
@@ -44,34 +53,41 @@ public class Dijkstra {
 				 
 				// Initialize all distances as INFINITE and stpSet[] as false
 				for (int i = 0; i < V; i++) { 
-		                dist[i] = Integer.MAX_VALUE; 
-		                sptSet[i] = false; 
+		            dist[i] = Integer.MAX_VALUE; 
+		            sptSet[i] = false; 
 		        } 
 				dist[src] = 0;
+				
+				int[] parents = new int[V];
+				parents[src] = NO_PARENT;
+				
 				// Find shortest path for all vertices  
 				 for (int count = 0; count < V - 1; count++) { 
 	            // Pick the minimum distance vertex from the set of vertices 
 	            // not yet processed. u is always equal to src in first 
 	            // iteration. 
 	            int u = minDistance(dist, sptSet); 
-	  
+	            
 	            // Mark the picked vertex as processed 
 	            sptSet[u] = true; 
 	  
 	            // Update dist value of the adjacent vertices of the 
 	            // picked vertex. 
 	            for (int v = 0; v < V; v++) 
-	  
+	            {
 	                // Update dist[v] only if is not in sptSet, there is an 
 	                // edge from u to v, and total weight of path from src to 
 	                // v through u is smaller than current value of dist[v] 
 	                if (!sptSet[v] && graph[u][v] != 0 &&  
-	                   dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) 
-	                    dist[v] = dist[u] + graph[u][v]; 
+	                   dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]){ 
+	                	parents[v] = u;
+	                	dist[v] = dist[u] + graph[u][v]; 
+	                }
+	            }
 	        } 
 	  
 	        // print the constructed distance array 
-	        printSolution(dist, src, tar); 
+	        printSolution(dist, src, tar, parents); 
 	    } 
 	
 	
@@ -123,6 +139,7 @@ public class Dijkstra {
         /*System.out.println("The shortest distacne is: " + 
                 dist[src][tar]);
        */
+        
         scan.close();
 	}	
 }
