@@ -43,8 +43,8 @@ public class Dijkstra {
 		Boolean sptSet[] = new Boolean[V];
 		 // Initialize all distances as INFINITE and stpSet[] as false
 		for (int i = 0; i < V; i++) { 
-            dist[i] = Integer.MAX_VALUE; 
-            sptSet[i] = false; 
+            	dist[i] = Integer.MAX_VALUE; 
+            	sptSet[i] = false; 
         } 
 		dist[src] = 0;
 		// Find shortest path for all vertices  
@@ -52,25 +52,25 @@ public class Dijkstra {
 	            // Pick the minimum distance vertex from the set of vertices 
 	            // not yet processed. u is always equal to src in first 
 	            // iteration. 
-	            int u = minDistance(dist, sptSet); 
+	            	int u = minDistance(dist, sptSet); 
 	  
 	            // Mark the picked vertex as processed 
-	            sptSet[u] = true; 
+	          sptSet[u] = true; 
 	  
 	            // Update dist value of the adjacent vertices of the 
 	            // picked vertex. 
-	            for (int v = 0; v < V; v++) 
+	          for (int v = 0; v < V; v++) 
 	  
 	                // Update dist[v] only if is not in sptSet, there is an 
 	                // edge from u to v, and total weight of path from src to 
 	                // v through u is smaller than current value of dist[v] 
-	                if (!sptSet[v] && graph[u][v] != 0 &&  
+	           if (!sptSet[v] && graph[u][v] != 0 &&  
 	                   dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) 
-	                    dist[v] = dist[u] + graph[u][v]; 
+	                   dist[v] = dist[u] + graph[u][v]; 
 	        } 
 	  
 	        // print the constructed distance array 
-	        printSolution(dist, src, tar); 
+	           printSolution(dist, src, tar); 
 	    } 
 	
 	
@@ -85,20 +85,20 @@ public class Dijkstra {
 			
 			//input the file name
 			reader = new BufferedReader(new FileReader("graphs/graph200_0.1/e.txt")); 
-            String line = reader.readLine();
-            line = reader.readLine();
+           		String line = reader.readLine();
+           		line = reader.readLine();
 			while (line != null) { 
 				String[] num = line.split(",");
-                graph[Integer.parseInt(num[0])][Integer.parseInt(num[1])]
-                            = Integer.parseInt(num[2]);
-                line = reader.readLine();
+                		graph[Integer.parseInt(num[0])][Integer.parseInt(num[1])]
+                            	= Integer.parseInt(num[2]);
+                		line = reader.readLine();
 			}
 			read.close();
 		}
 	}
-			catch (IOException e) {
-	            e.printStackTrace();
-	        }
+		catch (IOException e) {
+	         e.printStackTrace();
+    }
 }
 	
 	
