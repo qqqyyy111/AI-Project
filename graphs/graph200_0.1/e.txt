@@ -1,3 +1,4 @@
+# Edges: fromIndex, toIndex, edgeCost
 0,31,11
 0,34,40
 0,45,55
