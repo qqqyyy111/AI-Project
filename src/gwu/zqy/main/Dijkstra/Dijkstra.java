@@ -6,7 +6,7 @@ import java.util.*;
 public class Dijkstra {
 	
 	
-	static int graph[][] = new int[2000][2000];
+	static int graph[][] = new int[2000][200];
 	static int V = 200;
 	
 	// Creat shortest path set, this set tracks the vertices contained in the shortest path tree, 
@@ -36,41 +36,42 @@ public class Dijkstra {
 	}
 	
 	
-	public void dijkstra(int graph[][], int src, int tar)
-	{
-		int dist[] = new int[V];
-		 // sptSet[i] will true if vertex i is included in shortest
-		Boolean sptSet[] = new Boolean[V];
-		 // Initialize all distances as INFINITE and stpSet[] as false
-		for (int i = 0; i < V; i++) { 
-            	dist[i] = Integer.MAX_VALUE; 
-            	sptSet[i] = false; 
-        } 
-		dist[src] = 0;
-		// Find shortest path for all vertices  
-		 for (int count = 0; count < V - 1; count++) { 
+	public void dijkstra(int graph[][], int src, int tar){
+				int dist[] = new int[V];
+				 
+				// sptSet[i] will true if vertex i is included in shortest
+				Boolean sptSet[] = new Boolean[V];
+				 
+				// Initialize all distances as INFINITE and stpSet[] as false
+				for (int i = 0; i < V; i++) { 
+		                dist[i] = Integer.MAX_VALUE; 
+		                sptSet[i] = false; 
+		        } 
+				dist[src] = 0;
+				// Find shortest path for all vertices  
+				 for (int count = 0; count < V - 1; count++) { 
 	            // Pick the minimum distance vertex from the set of vertices 
 	            // not yet processed. u is always equal to src in first 
 	            // iteration. 
-	            	int u = minDistance(dist, sptSet); 
+	            int u = minDistance(dist, sptSet); 
 	  
 	            // Mark the picked vertex as processed 
-	          sptSet[u] = true; 
+	            sptSet[u] = true; 
 	  
 	            // Update dist value of the adjacent vertices of the 
 	            // picked vertex. 
-	          for (int v = 0; v < V; v++) 
+	            for (int v = 0; v < V; v++) 
 	  
 	                // Update dist[v] only if is not in sptSet, there is an 
 	                // edge from u to v, and total weight of path from src to 
 	                // v through u is smaller than current value of dist[v] 
-	           if (!sptSet[v] && graph[u][v] != 0 &&  
+	                if (!sptSet[v] && graph[u][v] != 0 &&  
 	                   dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) 
-	                   dist[v] = dist[u] + graph[u][v]; 
+	                    dist[v] = dist[u] + graph[u][v]; 
 	        } 
 	  
 	        // print the constructed distance array 
-	           printSolution(dist, src, tar); 
+	        printSolution(dist, src, tar); 
 	    } 
 	
 	
@@ -79,26 +80,28 @@ public class Dijkstra {
 		BufferedReader reader;
 		try {
 			String encoding = "UTF-8"; 
-			File file = new File("graphs/graph200_0.1/e.txt");
+			File file = new File("graphs/graph200_0.2/e.txt");
 			if (file.isFile() && file.exists()) {       	// if the file exists
 			InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);
 			
 			//input the file name
-			reader = new BufferedReader(new FileReader("graphs/graph200_0.1/e.txt")); 
-           		String line = reader.readLine();
-           		line = reader.readLine();
+			reader = new BufferedReader(new FileReader(file)); 
+            String line = reader.readLine();
+            line = reader.readLine();
 			while (line != null) { 
 				String[] num = line.split(",");
-                		graph[Integer.parseInt(num[0])][Integer.parseInt(num[1])]
-                            	= Integer.parseInt(num[2]);
-                		line = reader.readLine();
+                graph[Integer.parseInt(num[0])][Integer.parseInt(num[1])]
+                            = Integer.parseInt(num[2]);
+                graph[Integer.parseInt(num[1])][Integer.parseInt(num[0])]
+                        = Integer.parseInt(num[2]);
+                line = reader.readLine();
 			}
 			read.close();
 		}
 	}
-		catch (IOException e) {
-	         e.printStackTrace();
-    }
+			catch (IOException e) {
+	            e.printStackTrace();
+	        }
 }
 	
 	
@@ -108,18 +111,18 @@ public class Dijkstra {
 		readFile();
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Please input the source vertex: ");
-		int srcV = scan.nextInt();
-		System.out.println("Please input the source vertex: ");
-		int tarV = scan.nextInt();
-
-
-		Dijkstra d = new Dijkstra();
-		d.dijkstra(graph, srcV, tarV);
-
-		/*System.out.println("The shortest distacne is: " + 
-			dist[src][tar]);
-	       */
-		scan.close();
+        System.out.println("Please input the source vertex: ");
+        int srcV = scan.nextInt();
+        System.out.println("Please input the source vertex: ");
+        int tarV = scan.nextInt();
+        
+        
+        Dijkstra d = new Dijkstra();
+        d.dijkstra(graph, srcV, tarV);
+      
+        /*System.out.println("The shortest distacne is: " + 
+                dist[src][tar]);
+       */
+        scan.close();
 	}	
 }
